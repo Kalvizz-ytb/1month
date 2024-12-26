@@ -102,6 +102,28 @@
             }
         }
     </style>
+    <script>
+        function validateCodes(event) {
+            event.preventDefault();
+
+            const correctCodes = ["2404", "2306", "9012", "6912", "7890"];
+            const userCodes = [
+                document.getElementById("code1").value,
+                document.getElementById("code2").value,
+                document.getElementById("code3").value,
+                document.getElementById("code4").value,
+                document.getElementById("code5").value
+            ];
+
+            const isValid = correctCodes.every((code, index) => code === userCodes[index]);
+
+            if (isValid) {
+                window.location.href = "surprise.html";
+            } else {
+                alert("Les codes saisis sont incorrects. Veuillez réessayer.");
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -109,7 +131,7 @@
     </header>
 
     <main>
-        <form action="surprise.html" method="GET">
+        <form onsubmit="validateCodes(event)">
             <label for="code1">Code 1:</label>
             <input type="text" id="code1" name="code1" required>
 
